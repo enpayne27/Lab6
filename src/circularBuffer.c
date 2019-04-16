@@ -5,10 +5,9 @@ void initBuffer(commBuffer_t* comm, uint8_t type){
     comm -> head = 0;
     comm -> tail = 0;
     comm -> buffer = "";
-    comm -> type = 0;
+    comm -> type = type;
     comm -> MessageCount = 0;
     comm -> bufferSize = 0;
-    comm -> type = type;
 }
 
 //Test if a complete message is in buffer delimiter is '\n'
@@ -41,7 +40,6 @@ void putChar(commBuffer_t* comm, char ch){
   }
 }
 
-//********************TODO********************************
 //Get character from buffer and update tail - focused Rx
 char getChar(commBuffer_t* comm){
   //Handle delimiter (translate into newline)
@@ -63,18 +61,20 @@ char getChar(commBuffer_t* comm){
   }
 }
 
-//put C string into buffer
+//put C string into buffer - utilize putChar
 void putMessage(commBuffer_t* comm, char* str, uint8_t length){
-  //Always incrementing MessageCount
-  //Utilize putChar
-
-  --bufferSize;
+  for(int i = 0; i < length + 1; i++){
+    str[i] = putChar(comm, str[i]);
+  }
 }
 
-//get C string from buffer
+//get C string from buffer - utilize getChar
 void getMessage(commBuffer_t* comm, char* str){
-  //Always decrementing MessageCount
-  //Utilize getChar
+  for(int i = 0; i < strlen(str); i++){
+    while(comm -> MessageCount > 0){
+      str[i] = getChar(comm);
+    }
+  }
 }
 
 //get Size of Buffer

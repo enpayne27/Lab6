@@ -13,7 +13,7 @@ typedef struct _commBuffer_t {
 } commBuffer_t;
 
 #define CIRCULAR_RX 1<<0 //Receive = 1
-#define CIRCULAR_TX 1<<1 //Receive = 2
+#define CIRCULAR_TX 1<<1 //Transmit = 2
 
 //Initializes the struct commBuffer_t to zero, Type = Rx or Tx
 void initBuffer(commBuffer_t* comm, uint8_t type);
