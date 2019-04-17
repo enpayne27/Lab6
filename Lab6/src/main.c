@@ -31,6 +31,21 @@ int main(void)
 	//Initializes Buffers
 	initBuffer(&RX, 0);
 	initBuffer(&TX, 1);
+
+	while(1){
+		// Create string to hold incoming message
+		char message[MAXCOMMBUFFER] = "";
+
+		// Check if there is a message in the receiving buffer
+		if(haveMessage(&RX)){
+			// If message available, get it from the receiving buffer
+			getMessage(&RX, message);
+			// and put it into the transmitting buffer
+			putMessage(&TX, message, strlen(message));
+			// Now that message is availabe, reenable interrupts for Tx buffer
+			LL_USART_EnableIT_TXE(USARTx_INSTANCE);
+		}
+	}
 }
 /**
   * @brief  System Clock Configuration
@@ -91,16 +106,19 @@ static void SystemClock_Config(void)
  * where chars added. Tail index oldest string to be processed
  */
 void USARTx_IRQHandler(void) {
-	// check if the USART6 receive interrupt flag is active
+	// Check if the USART6 receive interrupt flag was activated
 	if(LL_USART_IsActiveFlag_RXNE(USARTx_INSTANCE)){
 		putChar(&RX, LL_USART_ReceiveData8(USARTx_INSTANCE));
 	}
-
+	// Check if the USART6 transmit interrupt flag was activated
+	// User requests information if active
 	if(LL_USART_IsActiveFlag_TXE(USARTx_INSTANCE)){
+		// Check if requested information is available
 		if(haveMessage(&TX)){
 			LL_USART_TransmitData8(USARTx_INSTANCE, getChar(&TX));
 		}
 		else{
+			// Manually disable if no messages to trasmit
 			LL_USART_DisableIT_TXE(USARTx_INSTANCE);
 		}
 	}++USARTCount;
