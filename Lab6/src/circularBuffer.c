@@ -73,9 +73,8 @@ void putMessage(commBuffer_t* comm, char* str, uint8_t length){
 void getMessage(commBuffer_t* comm, char* str){
 	int i = 0;
     while(comm -> MessageCount > 0){
-      char c = getChar(comm);
-      str[i] = c;
-      if (c == '\n') break;
+      str[i] = getChar(comm);
+      if (str[i] == '\n') break;
       i++;
     }
 }
