@@ -51,32 +51,33 @@ char getChar(commBuffer_t* comm){
   }
   // Check if head does not exceed maximum buffer size
   if(comm -> tail <= MAXCOMMBUFFER - 1){
-    comm -> buffer[comm -> tail] = ch;
     comm -> tail += 1;
     comm -> bufferSize -= 1;
   }
   // If so, return to start and then put character in buffer
   else{
-    comm -> buffer[comm -> tail] = ch;
     comm -> tail = 0;
     comm -> bufferSize -= 1;
   }
+  return ch;
 }
 
 // Put C string into buffer - utilize putChar
 void putMessage(commBuffer_t* comm, char* str, uint8_t length){
   for(int i = 0; i < length + 1; i++){
-    putChar(comm, str[i]);
+	  putChar(comm, str[i]);
   }
 }
 
 // Get C string from buffer - utilize getChar
 void getMessage(commBuffer_t* comm, char* str){
-  for(int i = 0; i < strlen(str); i++){
+	int i = 0;
     while(comm -> MessageCount > 0){
-      str[i] = getChar(comm);
+      char c = getChar(comm);
+      str[i] = c;
+      if (c == '\n') break;
+      i++;
     }
-  }
 }
 
 // Get Size of Buffer

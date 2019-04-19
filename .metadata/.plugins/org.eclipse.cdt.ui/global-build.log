@@ -1,4 +1,4 @@
-14:10:12 **** Build of configuration Debug for project Lab6 ****
+15:15:30 **** Build of configuration Debug for project Lab6 ****
 make -j1 all 
 Building file: ../startup/startup_stm32l475xx.S
 Invoking: MCU GCC Compiler
@@ -16,10 +16,6 @@ Building file: ../src/circularBuffer.c
 Invoking: MCU GCC Compiler
 /Users/erinpayne/Downloads/lab-6/Lab6/Debug
 arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DSTM32 -DSTM32L4 -DSTM32L475VGTx -DB_L475E_IOT01A1 -DDEBUG -DSTM32L475xx -DUSE_HAL_DRIVER -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/m24sr" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/cs43l22" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/mx25lm51245g" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/mfxstm32l152" -I"/Users/erinpayne/Downloads/lab-6/Lab6/CMSIS/device" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/cs42l51" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/n25q128a" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/st7735" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/ft3x67" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/rk043fn48h" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/hx8347g" -I"/Users/erinpayne/Downloads/lab-6/Lab6/HAL_Driver/Inc/Legacy" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/ov9655" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/stmpe1600" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/Common" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/l3gd20" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/lsm6dsl" -I"/Users/erinpayne/Downloads/lab-6/Lab6/HAL_Driver/Inc" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/stmpe811" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/wm8994" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/B-L475E-IOT01" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/ft5336" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/n25q256a" -I"/Users/erinpayne/Downloads/lab-6/Lab6/inc" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/hts221" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/ls016b8uy" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/ft6x06" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/lis3mdl" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/lps22hb" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/st7789h2" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/lsm303c" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/iss66wvh8m8" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/lsm303dlhc" -I"/Users/erinpayne/Downloads/lab-6/Lab6/CMSIS/core" -I"/Users/erinpayne/Downloads/lab-6/Lab6/Utilities/Components/mx25r6435f" -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -MMD -MP -MF"src/circularBuffer.d" -MT"src/circularBuffer.o" -o "src/circularBuffer.o" "../src/circularBuffer.c"
-../src/circularBuffer.c: In function 'getChar':
-../src/circularBuffer.c:64:1: warning: control reaches end of non-void function [-Wreturn-type]
- }
- ^
 Finished building: ../src/circularBuffer.c
  
 Building file: ../src/main.c
@@ -837,10 +833,10 @@ Generating binary and Printing size information:
 arm-none-eabi-objcopy -O binary "Lab6.elf" "Lab6.bin"
 arm-none-eabi-size "Lab6.elf"
    text	   data	    bss	    dec	    hex	filename
-   9088	   1096	   7864	  18048	   4680	Lab6.elf
+   9072	   1096	   7864	  18032	   4670	Lab6.elf
  
-14:13:01 **** Erasing chip ... ****
-/Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.externaltools.openocd.macos64_1.22.0.201902141520/tools/openocd/bin/openocd -f stm32.flash.2677477808839453292.cfg -s /Users/erinpayne/Downloads/lab-6/Lab6 -s /Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.debug_2.4.0.201902141520/resources/openocd/st_scripts "-c init" "-c reset halt" "-c flash erase_sector 0 0 last" "-c exit" 
+15:18:25 **** Programming project Lab6 on chip ****
+/Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.externaltools.openocd.macos64_1.22.0.201902141520/tools/openocd/bin/openocd -f stm32.flash.3679756534023499012.cfg -s /Users/erinpayne/Downloads/lab-6/Lab6 -s /Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.debug_2.4.0.201902141520/resources/openocd/st_scripts -c "program Debug/Lab6.elf verify exit" 
 Open On-Chip Debugger 0.10.0-dev-00019-g5352c55 (2019-02-14-15:37)
 Licensed under GNU GPL v2
 For bug reports, read
@@ -851,53 +847,21 @@ padded zone erase set to 1
 adapter speed: 8000 kHz
 adapter_nsrst_delay: 100
 Info : clock speed 8000 kHz
-Info : STLINK v2.1 JTAG v28 API v2 M18 VID 0x0483 PID 0x374B
-Info : using stlink api v2
-Info : Target voltage: 3.218361
-Info : Unable to match requested speed 8000 kHz, using 4000 kHz
-Info : Stlink adapter speed set to 4000 kHz
-Info : STM32L475VGTx.cpu: hardware has 6 breakpoints, 4 watchpoints
-target halted due to debug-request, current mode: Thread 
-xPSR: 0x01000000 pc: 0x080020e0 msp: 0x20018000
-Info : Device id = 0x10076415
-Info : STM32L4xx flash size is 1024kb, base address is 0x8000000
-erased sectors 0 through 511 on flash bank 0 in 14.835007s
-14:13:31 **** Programming project Lab6 on chip ****
-/Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.externaltools.openocd.macos64_1.22.0.201902141520/tools/openocd/bin/openocd -f stm32.flash.7182893960137488895.cfg -s /Users/erinpayne/Downloads/lab-6/Lab6 -s /Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.debug_2.4.0.201902141520/resources/openocd/st_scripts -c "program Debug/Lab6.elf verify exit" 
-Open On-Chip Debugger 0.10.0-dev-00019-g5352c55 (2019-02-14-15:37)
-Licensed under GNU GPL v2
-For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
-srst_only separate srst_nogate srst_open_drain connect_assert_srst
-Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
-padded zone erase set to 1
-adapter speed: 8000 kHz
-adapter_nsrst_delay: 100
-Info : clock speed 8000 kHz
-Info : STLINK v2.1 JTAG v28 API v2 M18 VID 0x0483 PID 0x374B
-Info : using stlink api v2
-Info : Target voltage: 3.218361
-Info : Unable to match requested speed 8000 kHz, using 4000 kHz
-Info : Stlink adapter speed set to 4000 kHz
-Info : STM32L475VGTx.cpu: hardware has 6 breakpoints, 4 watchpoints
-target halted due to debug-request, current mode: Thread 
-xPSR: 0x01000000 pc: 0xfffffffe msp: 0xfffffffc
-** Programming Started **
-auto erase enabled
-Info : Device id = 0x10076415
-Info : STM32L4xx flash size is 1024kb, base address is 0x8000000
-Info : Erase the padded zone before the write
-Error: Whole bank access must start at beginning of bank.
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x20000050 msp: 0xfffffffc
-Info : block write succeeded
-wrote 10240 bytes from file Debug/Lab6.elf in 0.979915s (10.205 KiB/s)
-** Programming Finished **
-** Verify Started **
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x2000002e msp: 0xfffffffc
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x2000002e msp: 0xfffffffc
-verified 10240 bytes in 0.997153s (10.029 KiB/s)
-** Verified OK **
+in procedure 'program' 
+in procedure 'init' called at file "embedded:startup.tcl", line 485
+in procedure 'ocd_bouncer'
+** OpenOCD init failed **
 shutdown command invoked
+
+15:19:13 **** Incremental Build of configuration Debug for project Lab6 ****
+make -j1 all 
+make: Nothing to be done for `all'.
+15:19:24 **** Incremental Build of configuration Debug for project Lab6 ****
+make -j1 all 
+make: Nothing to be done for `all'.
+15:19:46 **** Incremental Build of configuration Debug for project Lab6 ****
+make -j1 all 
+make: Nothing to be done for `all'.
+15:20:47 **** Incremental Build of configuration Debug for project Lab6 ****
+make -j1 all 
+make: Nothing to be done for `all'.

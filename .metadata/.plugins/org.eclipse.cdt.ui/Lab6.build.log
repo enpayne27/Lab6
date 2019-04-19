@@ -1,42 +1,6 @@
-14:13:31 **** Programming project Lab6 on chip ****
-/Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.externaltools.openocd.macos64_1.22.0.201902141520/tools/openocd/bin/openocd -f stm32.flash.7182893960137488895.cfg -s /Users/erinpayne/Downloads/lab-6/Lab6 -s /Applications/Ac6/SystemWorkbench.app/Contents/Eclipse/plugins/fr.ac6.mcu.debug_2.4.0.201902141520/resources/openocd/st_scripts -c "program Debug/Lab6.elf verify exit" 
-Open On-Chip Debugger 0.10.0-dev-00019-g5352c55 (2019-02-14-15:37)
-Licensed under GNU GPL v2
-For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
-srst_only separate srst_nogate srst_open_drain connect_assert_srst
-Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
-padded zone erase set to 1
-adapter speed: 8000 kHz
-adapter_nsrst_delay: 100
-Info : clock speed 8000 kHz
-Info : STLINK v2.1 JTAG v28 API v2 M18 VID 0x0483 PID 0x374B
-Info : using stlink api v2
-Info : Target voltage: 3.218361
-Info : Unable to match requested speed 8000 kHz, using 4000 kHz
-Info : Stlink adapter speed set to 4000 kHz
-Info : STM32L475VGTx.cpu: hardware has 6 breakpoints, 4 watchpoints
-target halted due to debug-request, current mode: Thread 
-xPSR: 0x01000000 pc: 0xfffffffe msp: 0xfffffffc
-** Programming Started **
-auto erase enabled
-Info : Device id = 0x10076415
-Info : STM32L4xx flash size is 1024kb, base address is 0x8000000
-Info : Erase the padded zone before the write
-Error: Whole bank access must start at beginning of bank.
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x20000050 msp: 0xfffffffc
-Info : block write succeeded
-wrote 10240 bytes from file Debug/Lab6.elf in 0.979915s (10.205 KiB/s)
-** Programming Finished **
-** Verify Started **
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x2000002e msp: 0xfffffffc
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x2000002e msp: 0xfffffffc
-verified 10240 bytes in 0.997153s (10.029 KiB/s)
-** Verified OK **
-shutdown command invoked
+15:20:47 **** Incremental Build of configuration Debug for project Lab6 ****
+make -j1 all 
+make: Nothing to be done for `all'.
 
-14:13:34 Build Finished (took 2s.916ms)
+15:20:47 Build Finished (took 630ms)
 

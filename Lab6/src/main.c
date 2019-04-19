@@ -28,8 +28,8 @@ int main(void)
 	/* Configure UART4 */
 	Configure_USART();
 
-	char* startText = "\nChip programmed successfully";
-	SendCharArrayUSART4(startText,strlen(startText));
+	char* text = "\nChip programmed successfully\n";
+	SendCharArrayUSART4(text,strlen(text));
 
 	//Initializes Buffers
 	initBuffer(&RX, 0);
@@ -118,7 +118,8 @@ void USARTx_IRQHandler(void) {
 	if(LL_USART_IsActiveFlag_TXE(USARTx_INSTANCE)){
 		// Check if requested information is available
 		if(haveMessage(&TX)){
-			LL_USART_TransmitData8(USARTx_INSTANCE, getChar(&TX));
+			char c = getChar(&TX);
+			LL_USART_TransmitData8(USARTx_INSTANCE, c);
 		}
 		else{
 			// Manually disable if no messages to transmit
