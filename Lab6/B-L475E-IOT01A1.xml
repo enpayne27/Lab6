@@ -12,8 +12,8 @@
 <targetDefinitions>
   <board id="b-l475e-iot01a1">
     <name>B-L475E-IOT01A1</name>
-    <dbgIF>JTAG</dbgIF>
     <dbgIF>SWD</dbgIF>
+    <dbgIF>JTAG</dbgIF>
     <dbgDEV>ST-Link</dbgDEV>
     <mcuId>stm32l475vgtx</mcuId>
   </board>

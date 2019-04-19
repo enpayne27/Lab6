@@ -1,10 +1,10 @@
+#include "string.h"
 #include "circularBuffer.h"
 
-// Iniitialize the struct commBuffer_t to zero
+// Initialize the struct commBuffer_t to zero
 void initBuffer(commBuffer_t* comm, uint8_t type){
     comm -> head = 0;
     comm -> tail = 0;
-    comm -> buffer = "";
     comm -> type = type;
     comm -> MessageCount = 0;
     comm -> bufferSize = 0;
@@ -30,19 +30,21 @@ void putChar(commBuffer_t* comm, char ch){
   if(comm -> head <= MAXCOMMBUFFER - 1){
     comm -> buffer[comm -> head] = ch;
     comm -> head += 1;
-    ++bufferSize;
+    comm -> bufferSize += 1;
   }
   // If so, return to start and then put character in buffer
   else{
     comm -> buffer[comm -> head] = ch;
     comm -> head = 0;
-    ++bufferSize;
+    comm -> bufferSize += 1;
   }
 }
 
 // Get character from buffer and update tail - focused Rx
 char getChar(commBuffer_t* comm){
   // Handle delimiter (translate into newline)
+  char ch = comm->buffer[comm -> tail];
+
   if(ch == '\0'){
     ch = '\n';
     comm -> MessageCount -= 1;
@@ -51,20 +53,20 @@ char getChar(commBuffer_t* comm){
   if(comm -> tail <= MAXCOMMBUFFER - 1){
     comm -> buffer[comm -> tail] = ch;
     comm -> tail += 1;
-    --bufferSize;
+    comm -> bufferSize -= 1;
   }
   // If so, return to start and then put character in buffer
   else{
     comm -> buffer[comm -> tail] = ch;
     comm -> tail = 0;
-    --bufferSize;
+    comm -> bufferSize -= 1;
   }
 }
 
 // Put C string into buffer - utilize putChar
 void putMessage(commBuffer_t* comm, char* str, uint8_t length){
   for(int i = 0; i < length + 1; i++){
-    str[i] = putChar(comm, str[i]);
+    putChar(comm, str[i]);
   }
 }
 

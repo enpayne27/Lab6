@@ -28,6 +28,9 @@ int main(void)
 	/* Configure UART4 */
 	Configure_USART();
 
+	char* startText = "\nChip programmed successfully";
+	SendCharArrayUSART4(startText,strlen(startText));
+
 	//Initializes Buffers
 	initBuffer(&RX, 0);
 	initBuffer(&TX, 1);
@@ -42,7 +45,7 @@ int main(void)
 			getMessage(&RX, message);
 			// and put it into the transmitting buffer
 			putMessage(&TX, message, strlen(message));
-			// Now that message is availabe, reenable interrupts for Tx buffer
+			// Now that message is available, reenable interrupts for Tx buffer
 			LL_USART_EnableIT_TXE(USARTx_INSTANCE);
 		}
 	}
@@ -118,7 +121,7 @@ void USARTx_IRQHandler(void) {
 			LL_USART_TransmitData8(USARTx_INSTANCE, getChar(&TX));
 		}
 		else{
-			// Manually disable if no messages to trasmit
+			// Manually disable if no messages to transmit
 			LL_USART_DisableIT_TXE(USARTx_INSTANCE);
 		}
 	}++USARTCount;
