@@ -118,8 +118,7 @@ void USARTx_IRQHandler(void) {
 	if(LL_USART_IsActiveFlag_TXE(USARTx_INSTANCE)){
 		// Check if requested information is available
 		if(haveMessage(&TX)){
-			char c = getChar(&TX);
-			LL_USART_TransmitData8(USARTx_INSTANCE, c);
+			LL_USART_TransmitData8(USARTx_INSTANCE, getChar(&TX));
 		}
 		else{
 			// Manually disable if no messages to transmit

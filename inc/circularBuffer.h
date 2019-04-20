@@ -2,7 +2,7 @@
 #define JAH_CIRCULAR_BUFFER_H
 
 #include "stm32L4xx.h"
-#define MAXCOMMBUFFER 2048
+#define MAXCOMMBUFFER 5
 typedef struct _commBuffer_t {
   uint32_t head;
   uint32_t tail;

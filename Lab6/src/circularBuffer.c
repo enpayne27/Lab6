@@ -21,13 +21,22 @@ uint8_t haveMessage(commBuffer_t* comm){
 // Put character in buffer and update head - focused on Tx
 // Using haveMessage - could check for delimiter here and change MessageCount
 void putChar(commBuffer_t* comm, char ch){
+  // Handles maximum buff fill
+  if(comm -> bufferSize >= MAXCOMMBUFFER - 1){
+	if(ch == '\n'){
+		comm -> bufferSize += 1;
+		comm -> MessageCount += 1;
+	}
+    comm -> buffer[comm -> head] = '\0';
+    return;
+  }
   // Handle delimiter (translate into null character)
   if(ch == '\n'){
     ch = '\0';
     comm -> MessageCount += 1;
   }
   // Check if head does not exceed maximum buffer size
-  if(comm -> head <= MAXCOMMBUFFER - 1){
+  if(comm -> head < MAXCOMMBUFFER - 1){
     comm -> buffer[comm -> head] = ch;
     comm -> head += 1;
     comm -> bufferSize += 1;
@@ -49,8 +58,11 @@ char getChar(commBuffer_t* comm){
     ch = '\n';
     comm -> MessageCount -= 1;
   }
+  if(comm -> head == comm -> tail && ch == '\n'){
+	comm -> bufferSize -= 1;
+  }
   // Check if head does not exceed maximum buffer size
-  if(comm -> tail <= MAXCOMMBUFFER - 1){
+  else if(comm -> tail < MAXCOMMBUFFER - 1){
     comm -> tail += 1;
     comm -> bufferSize -= 1;
   }
@@ -64,7 +76,7 @@ char getChar(commBuffer_t* comm){
 
 // Put C string into buffer - utilize putChar
 void putMessage(commBuffer_t* comm, char* str, uint8_t length){
-  for(int i = 0; i < length + 1; i++){
+  for(int i = 0; i < length; i++){
 	  putChar(comm, str[i]);
   }
 }
@@ -72,7 +84,7 @@ void putMessage(commBuffer_t* comm, char* str, uint8_t length){
 // Get C string from buffer - utilize getChar
 void getMessage(commBuffer_t* comm, char* str){
 	int i = 0;
-    while(comm -> MessageCount > 0){
+    while(1){
       str[i] = getChar(comm);
       if (str[i] == '\n') break;
       i++;
